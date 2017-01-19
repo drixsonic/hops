@@ -89,18 +89,26 @@ module.exports = new Configuration({
         'postcss-loader'
       ]
     }, {
-      test: /\.((html)|(svg)|(jpeg))$/,
-      use: {
-        loader: 'file-loader'
-      }
+      // Images
+      test: /\.(jpe?g|png|gif|ico|svg)$/i,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
+      }, {
+        loader: 'image-webpack-loader'
+      }]
     }, {
-      test: /\.((png)|(gif))$/,
-      use: {
+      // Fonts
+      test: /\.(woff|woff2|ttf)$/i,
+      use: [{
         loader: 'url-loader',
         options: {
-          limit: 10000
+          limit: 10000,
+          name: '[name].[ext]'
         }
-      }
+      }]
     }]
   },
   resolve: {

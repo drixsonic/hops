@@ -33,6 +33,37 @@ module.exports = require('./webpack.base.js')
         },
         'postcss-loader'
       ]
+    }, {
+      // Images
+      test: /\.(jpe?g|png|gif|ico|svg)$/i,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          emitFile: false,
+          name: '[name]-[md5:hash:20].[ext]'
+        }
+      }, {
+        loader: 'image-webpack-loader',
+        options: {
+          progressive: true,
+          optimizationLevel: 7,
+          interlaced: true,
+          pngquant: {
+            quality: '65-90',
+            speed: 4
+          }
+        }
+      }]
+    }, {
+      // Fonts
+      test: /\.(woff|woff2|ttf)$/i,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name]-[hash:20].[ext]'
+        }
+      }]
     }]
   },
   plugins: [
