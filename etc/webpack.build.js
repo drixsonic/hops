@@ -39,7 +39,6 @@ module.exports = require('./webpack.base.js')
       use: [{
         loader: 'file-loader',
         options: {
-          emitFile: false,
           name: '[name]-[md5:hash:20].[ext]'
         }
       }, {
